@@ -1,13 +1,43 @@
+import { images } from "@/constants";
 import { Slot } from "expo-router";
 import React from "react";
-import { Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  Dimensions,
+  Image,
+  ImageBackground,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  View,
+} from "react-native";
 
 export default function _layout() {
   return (
-    <SafeAreaView>
-      <Text>auth layout</Text>
-      <Slot />
-    </SafeAreaView>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+    >
+      <ScrollView
+        className='h-full bg-white'
+        keyboardShouldPersistTaps='handled'
+      >
+        <View
+          className='relative w-full'
+          style={{ height: Dimensions.get("screen").height / 2.25 }}
+        >
+          <ImageBackground
+            source={images.loginGraphic}
+            className='rounded-b-lg size-full'
+            resizeMode='stretch'
+          />
+
+          <Image
+            source={images.logo}
+            className='absolute z-10 self-center size-48 -bottom-16'
+          />
+        </View>
+
+        <Slot />
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
