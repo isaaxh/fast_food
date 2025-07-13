@@ -1,8 +1,10 @@
 import CartButton from "@/components/CartButton";
+import Filter from "@/components/Filter";
 import MenuCard from "@/components/MenuCard";
+import SearchBar from "@/components/SearchBar";
 import { getCategories, getMenu } from "@/lib/appwrite";
 import useAppwrite from "@/lib/useAppwrite";
-import { MenuItem } from "@/type";
+import { Category, MenuItem } from "@/type";
 import cn from "clsx";
 import { useLocalSearchParams } from "expo-router";
 import React, { useEffect } from "react";
@@ -47,7 +49,7 @@ const Search = () => {
         columnWrapperClassName='gap-7'
         contentContainerClassName='gap-7 px-5 pb-32'
         ListHeaderComponent={() => (
-          <View className='px-5 my-5'>
+          <View className='gap-5 my-5'>
             <View className='flex-row w-full flex-between'>
               <View className='flex-start'>
                 <Text className='uppercase small-bold text-primary'>
@@ -63,9 +65,9 @@ const Search = () => {
               <CartButton />
             </View>
 
-            <Text>search input</Text>
+            <SearchBar />
 
-            <Text>Filter</Text>
+            <Filter categories={categories as Category[]} />
           </View>
         )}
         ListEmptyComponent={() => !loading && <Text>No Results</Text>}
