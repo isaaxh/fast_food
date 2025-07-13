@@ -1,8 +1,11 @@
 import CartButton from "@/components/CartButton";
 import { images, offers } from "@/constants";
+import { signOut } from "@/lib/appwrite";
+import useAuthStore from "@/store/auth.store";
 import cn from "clsx";
 import { Fragment } from "react";
 import {
+  Button,
   FlatList,
   Image,
   Pressable,
@@ -13,6 +16,16 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
+  const { isLoading, fetchAuthenticatedUser } = useAuthStore();
+
+  const logout = async () => {
+    try {
+      await signOut();
+      fetchAuthenticatedUser();
+    } catch (e) {
+      console.error("Logout failed:", e);
+    }
+  };
   return (
     <SafeAreaView className='flex-1 bg-white'>
       <FlatList
@@ -77,6 +90,11 @@ export default function Index() {
             </View>
 
             <CartButton />
+          </View>
+        }
+        ListFooterComponent={
+          <View>
+            <Button title='Log Out' onPress={logout} />
           </View>
         }
       />
