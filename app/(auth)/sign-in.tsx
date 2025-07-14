@@ -8,7 +8,7 @@ import React, { useState } from "react";
 import { Alert, Text, View } from "react-native";
 
 const SignIn = () => {
-  const { isLoading, fetchAuthenticatedUser } = useAuthStore();
+  const { fetchAuthenticatedUser } = useAuthStore();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({ email: "", password: "" });
@@ -23,6 +23,7 @@ const SignIn = () => {
 
     try {
       await signIn({ email, password });
+      await fetchAuthenticatedUser();
       router.replace("/");
     } catch (error: any) {
       Alert.alert("Error", error.message);
@@ -31,6 +32,7 @@ const SignIn = () => {
       setIsSubmitting(false);
     }
   };
+
   return (
     <View className='gap-10 p-5 mt-5 bg-white rounded-lg'>
       <CustomInput

@@ -15,7 +15,10 @@ import {
 export default function AuthLayout() {
   const { isAuthenticated } = useAuthStore();
 
+  console.log("isAuthenticated", isAuthenticated);
+
   if (isAuthenticated) return <Redirect href='/' />;
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
