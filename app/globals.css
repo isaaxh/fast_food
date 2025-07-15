@@ -90,7 +90,7 @@
   }
 
   .profile-edit {
-    @apply absolute right-0 flex items-center justify-center p-2 border-2 border-white rounded-full bottom-2 bg-primary size-7;
+    @apply absolute right-0 flex items-center justify-center p-2 border-2 border-white rounded-full bottom-2 bg-primary size-8;
   }
 
   .h1-bold {
