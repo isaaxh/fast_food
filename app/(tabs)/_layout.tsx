@@ -1,5 +1,6 @@
 import { images } from "@/constants";
 import useAuthStore from "@/store/auth.store";
+import { useCartStore } from "@/store/cart.store";
 import { TabBarIconProps } from "@/type";
 import cn from "clsx";
 import { Redirect, Tabs } from "expo-router";
@@ -29,6 +30,9 @@ export default function TabLayout() {
   const { isAuthenticated } = useAuthStore();
 
   if (!isAuthenticated) return <Redirect href='/sign-in' />;
+
+  const { getTotalItems } = useCartStore();
+  const totalItems = getTotalItems();
 
   return (
     <Tabs
@@ -76,7 +80,14 @@ export default function TabLayout() {
         options={{
           title: "Cart",
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} title='Cart' icon={images.bag} />
+            <>
+              <TabBarIcon focused={focused} title='Cart' icon={images.bag} />
+              {totalItems > 0 && (
+                <View className='-right-3 top-1 cart-badge'>
+                  <Text className='text-white small-bold'>{totalItems}</Text>
+                </View>
+              )}
+            </>
           ),
         }}
       />
