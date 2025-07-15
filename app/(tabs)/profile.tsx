@@ -10,7 +10,7 @@ import { Image, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const Profile = () => {
-  const { fetchAuthenticatedUser } = useAuthStore();
+  const { fetchAuthenticatedUser, user } = useAuthStore();
 
   const logout = async () => {
     try {
@@ -32,7 +32,7 @@ const Profile = () => {
       <View className='px-12 mb-12 gap-y-6'>
         <ProfileInfoItem
           label='Full Name'
-          value='Isaac Hussain'
+          value={user?.name ?? ""}
           icon={
             <Image
               source={images.user}
@@ -43,7 +43,7 @@ const Profile = () => {
         />
         <ProfileInfoItem
           label='Email'
-          value='isaaxh@gmail.com'
+          value={user?.email ?? ""}
           icon={
             <Image
               source={images.envelope}

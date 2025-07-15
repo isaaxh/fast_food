@@ -1,18 +1,19 @@
+import { useCategoryStore } from "@/store/category.store";
 import { Category } from "@/type";
 import cn from "clsx";
-import { router, useLocalSearchParams } from "expo-router";
 import { useState } from "react";
 import { FlatList, Platform, Text, TouchableOpacity } from "react-native";
 
 const Filter = ({ categories }: { categories: Category[] }) => {
-  const searchParams = useLocalSearchParams();
-  const [active, setActive] = useState(searchParams.category || "");
+  const category = useCategoryStore((state) => state.category);
+  const setCategory = useCategoryStore((state) => state.setCategory);
+  const [active, setActive] = useState(category || "all");
 
   const handlePress = (id: string) => {
     setActive(id);
 
-    if (id === "all") router.setParams({ category: undefined });
-    else router.setParams({ category: id });
+    if (id === "all") setCategory("");
+    else setCategory(id);
   };
 
   const filterData: (Category | { $id: string; name: string })[] = categories

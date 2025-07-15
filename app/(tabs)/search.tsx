@@ -4,6 +4,7 @@ import MenuCard from "@/components/MenuCard";
 import SearchBar from "@/components/SearchBar";
 import { getCategories, getMenu } from "@/lib/appwrite";
 import useAppwrite from "@/lib/useAppwrite";
+import { useCategoryStore } from "@/store/category.store";
 import { Category, MenuItem } from "@/type";
 import cn from "clsx";
 import { useLocalSearchParams } from "expo-router";
@@ -12,10 +13,11 @@ import { FlatList, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const Search = () => {
-  const { category, query } = useLocalSearchParams<{
+  const { query } = useLocalSearchParams<{
     query: string;
-    category: string;
   }>();
+
+  const category = useCategoryStore((state) => state.category);
 
   const { data, refetch, loading } = useAppwrite({
     fn: getMenu,
