@@ -58,7 +58,12 @@ const SignUp = () => {
         }
         secureTextEntry={true}
       />
-      <CustomButton title='Sign Up' isLoading={isSubmitting} onPress={submit} />
+      <CustomButton
+        title='Sign Up'
+        variant='primary'
+        isLoading={isSubmitting}
+        onPress={submit}
+      />
 
       <View className='flex flex-row justify-center gap-2 mt-5'>
         <Text className='base-regular'>Already have an account?</Text>

@@ -19,7 +19,9 @@ const CustomHeader = ({ title }: CustomHeaderProps) => {
 
       {title && <Text className='base-semibold text-dark-100'>{title}</Text>}
 
-      <Image source={images.search} className='size-5' resizeMode='contain' />
+      <TouchableOpacity onPress={() => router.push("/(tabs)/search")}>
+        <Image source={images.search} className='size-5' resizeMode='contain' />
+      </TouchableOpacity>
     </View>
   );
 };

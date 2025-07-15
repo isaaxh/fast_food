@@ -68,7 +68,11 @@ const Cart = () => {
                 />
               </View>
 
-              <CustomButton title='Order Now' />
+              <CustomButton
+                title='Order Now'
+                variant='primary'
+                onPress={() => {}}
+              />
             </View>
           )
         }
