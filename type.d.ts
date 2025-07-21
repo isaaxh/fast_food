@@ -20,6 +20,12 @@ export interface User extends Models.Document {
     name: string;
     email: string;
     avatar: string;
+    phoneNumber?: string,
+    address1?: string,
+    address2?: string,
+    gender?: 'male' | 'female'
+    nationality?: string
+    dob?: string
 }
 
 export interface CartCustomization {
@@ -84,7 +90,7 @@ interface CustomInputProps {
     keyboardType?: "default" | "email-address" | "numeric" | "phone-pad";
 }
 
-interface ProfileFieldProps {
+interface ProfileInfoItemProps {
     label: string;
     value: string;
     icon: ImageSourcePropType;
@@ -105,3 +111,15 @@ interface GetMenuParams {
     category: string;
     query: string;
 }
+
+type GetDocumentProps = {
+    collectionId: 'userCollectionId' | 'menuCollectionId' | 'customizationsCollectionId' | 'categoriesCollectionId',
+    documentId: string,
+}
+
+type UpdateDocumentProps = {
+    collectionId: 'userCollectionId' | 'menuCollectionId' | 'customizationsCollectionId' | 'categoriesCollectionId',
+    documentId: string,
+    updatedFields: Record<string, any>
+}
+

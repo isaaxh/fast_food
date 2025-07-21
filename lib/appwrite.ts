@@ -1,4 +1,4 @@
-import { CreateUserParams, GetMenuParams, SignInParams } from "@/type";
+import { CreateUserParams, GetDocumentProps, GetMenuParams, SignInParams, UpdateDocumentProps } from "@/type";
 import { Account, Avatars, Client, Databases, ID, Query, Storage } from "react-native-appwrite";
 
 export const appwriteConfig = {
@@ -91,7 +91,6 @@ export const getCurrentUser = async () => {
         if (!currentUser) throw Error;
 
         return currentUser.documents[0]
-
     } catch (e) {
         console.log(e);
         throw new Error(e as string)
@@ -129,5 +128,44 @@ export const getCategories = async () => {
         return categories.documents
     } catch (e) {
         throw new Error(e as string)
+    }
+}
+
+export const getDocument = async ({ collectionId, documentId }: GetDocumentProps) => {
+
+    try {
+
+        const currentAccount = await account.get();
+        if (!currentAccount) throw Error;
+
+        const document = await databases.getDocument(
+            appwriteConfig.databaseId,
+            appwriteConfig[collectionId],
+            documentId
+        )
+
+        return document
+    } catch (e) {
+        throw new Error(e as string)
+    }
+}
+
+export const updateDocument = async ({ collectionId, documentId, updatedFields }: UpdateDocumentProps) => {
+
+    try {
+        const currentAccount = await account.get();
+        if (!currentAccount) throw Error;
+
+        const updatedDoc = await databases.updateDocument(
+            appwriteConfig.databaseId,
+            appwriteConfig[collectionId],
+            documentId,
+            updatedFields,
+        );
+
+        return updatedDoc
+    } catch (e) {
+        console.log('error updating user doc:', e);
+
     }
 }
