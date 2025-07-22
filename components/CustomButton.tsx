@@ -30,7 +30,7 @@ const CustomButton: React.FC<UIButtonProps> = ({
   const baseStyle = "custom-btn";
   const primaryStyle = "bg-amber-500";
   const secondaryStyle = "bg-transparent border border-amber-600";
-  const disabledStyle = "opacity-50";
+  const disabledStyle = "opacity-40";
 
   const baseTextStyle = "paragraph-semibold";
   const primaryText = "text-white";

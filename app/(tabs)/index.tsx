@@ -1,5 +1,6 @@
 import CartButton from "@/components/CartButton";
 import { images, offers } from "@/constants";
+import useAuthStore from "@/store/auth.store";
 import { useCategoryStore } from "@/store/category.store";
 import cn from "clsx";
 import { router } from "expo-router";
@@ -16,6 +17,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
   const setCategory = useCategoryStore((state) => state.setCategory);
+  const { user } = useAuthStore();
 
   const handlePress = async (id: string) => {
     setCategory(id);
@@ -77,7 +79,12 @@ export default function Index() {
             <View className='flex-start'>
               <Text className='small-bold text-primary'>DELIVER TO</Text>
               <TouchableOpacity className='flex-row flex-center gap-x-1 mt-0.5'>
-                <Text className='paragraph-bold text-dark-100'>Mecca</Text>
+                <Text
+                  className='truncate paragraph-bold text-dark-100'
+                  ellipsizeMode='tail'
+                >
+                  {user?.address1 !== undefined ? user?.address1 : "Mecca"}
+                </Text>
                 <Image
                   source={images.arrowDown}
                   className='size-3'
