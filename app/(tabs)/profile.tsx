@@ -139,6 +139,7 @@ const Profile = () => {
                   onBlur={onBlur}
                   value={value ?? ""}
                   label={item.label}
+                  title={item.title}
                   editable={item.editable}
                   icon={
                     <Image

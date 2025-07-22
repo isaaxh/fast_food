@@ -10,6 +10,7 @@ import {
 } from "react-native";
 
 type ProfileInfoFieldProps = {
+  title: string;
   label: string;
   value: string;
   onBlur: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
@@ -19,6 +20,7 @@ type ProfileInfoFieldProps = {
 };
 
 const ProfileInfoField = ({
+  title,
   label,
   value,
   onBlur,
@@ -32,7 +34,7 @@ const ProfileInfoField = ({
     <View className='flex-row items-center'>
       <View className='mr-3'>{icon}</View>
       <View className='flex-1'>
-        <Text className='text-gray-200 body-medium'>{label}</Text>
+        <Text className='text-gray-200 body-medium'>{title}</Text>
         <View className='flex-row items-center flex-1'>
           {editable ? (
             <>

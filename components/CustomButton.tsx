@@ -2,11 +2,9 @@ import cn from "clsx";
 import React from "react";
 import { Text, TouchableOpacity } from "react-native";
 
-const primary = "text-white-100";
-
 type ButtonVariation = "primary" | "secondary";
 
-interface UIButtonProps {
+interface CustomButtonProps {
   title: string;
   onPress: () => void;
   variant: ButtonVariation;
@@ -17,7 +15,7 @@ interface UIButtonProps {
   textStyle?: string;
 }
 
-const CustomButton: React.FC<UIButtonProps> = ({
+const CustomButton: React.FC<CustomButtonProps> = ({
   title = "Click Me",
   onPress,
   variant,
