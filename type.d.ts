@@ -112,13 +112,15 @@ interface GetMenuParams {
     query: string;
 }
 
+type CollectionIdNames = 'userCollectionId' | 'menuCollectionId' | 'customizationsCollectionId' | 'categoriesCollectionId'
+
 type GetDocumentProps = {
-    collectionId: 'userCollectionId' | 'menuCollectionId' | 'customizationsCollectionId' | 'categoriesCollectionId',
+    collectionId: CollectionIdNames,
     documentId: string,
 }
 
 type UpdateDocumentProps = {
-    collectionId: 'userCollectionId' | 'menuCollectionId' | 'customizationsCollectionId' | 'categoriesCollectionId',
+    collectionId: CollectionIdNames,
     documentId: string,
     updatedFields: Record<string, any>
 }
