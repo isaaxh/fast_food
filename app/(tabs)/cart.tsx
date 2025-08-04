@@ -1,9 +1,12 @@
 import CartItem from "@/components/CartItem";
 import CustomButton from "@/components/CustomButton";
 import CustomHeader from "@/components/CustomHeader";
+import EmptyState from "@/components/EmptyState";
+import { images } from "@/constants";
 import { useCartStore } from "@/store/cart.store";
 import { PaymentInfoStripeProps } from "@/type";
 import cn from "clsx";
+import { router } from "expo-router";
 import React from "react";
 import { FlatList, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -36,9 +39,19 @@ const Cart = () => {
         data={items}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <CartItem item={item} />}
-        contentContainerClassName='pb-28 px-5 pt-5'
+        contentContainerClassName='pb-28 px-5 pt-5 flex'
         ListHeaderComponent={() => <CustomHeader title='Your Cart' />}
-        ListEmptyComponent={() => <Text>Cart Empty</Text>}
+        ListEmptyComponent={() => (
+          <View className='mt-20'>
+            <EmptyState
+              graphic={images.emptyState}
+              title='Your shopping cart looks empty.'
+              description='What are you carving today?'
+              ctaLabel='Browse Menu'
+              onCtaPress={() => router.push("/(tabs)/search")}
+            />
+          </View>
+        )}
         ListFooterComponent={() =>
           totalItems > 0 && (
             <View className='gap-5'>
