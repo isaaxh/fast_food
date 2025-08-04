@@ -166,12 +166,16 @@ const Profile = () => {
             <CustomButton
               title='Save'
               variant='primary'
+              size='large'
+              border='rounded-full'
               onPress={handleSubmit(onSubmit)}
               disabled={!isDirty}
             />
             <CustomButton
               title='Log Out'
               variant='secondary'
+              size='large'
+              border='rounded-full'
               style='border-red-600'
               textStyle='text-red-600'
               leftIcon={

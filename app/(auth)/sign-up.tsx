@@ -61,6 +61,8 @@ const SignUp = () => {
       <CustomButton
         title='Sign Up'
         variant='primary'
+        size='large'
+        border='rounded-full'
         isLoading={isSubmitting}
         onPress={submit}
       />
