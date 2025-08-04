@@ -87,6 +87,7 @@ const Profile = () => {
     control,
     handleSubmit,
     formState: { errors, isDirty },
+    reset,
   } = useForm<TFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -113,6 +114,8 @@ const Profile = () => {
       documentId: user.$id,
       updatedFields,
     });
+
+    reset(data);
   };
 
   const logout = async () => {
