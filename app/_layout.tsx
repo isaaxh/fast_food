@@ -3,6 +3,7 @@ import * as Sentry from "@sentry/react-native";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import "./globals.css";
 
 Sentry.init({
@@ -46,5 +47,10 @@ export default Sentry.wrap(function RootLayout() {
 
   if (!fontsLoaded || isLoading) return null;
 
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <Stack screenOptions={{ headerShown: false }} />
+      {/* <NotificationsProvider /> */}
+    </GestureHandlerRootView>
+  );
 });
