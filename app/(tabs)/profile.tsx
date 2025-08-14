@@ -1,9 +1,11 @@
 import CustomButton from "@/components/CustomButton";
+import CustomModal from "@/components/CustomModal";
 import ProfileHeader from "@/components/ProfileHeader";
 import ProfileInfoField from "@/components/ProfileInfoField";
 import { images } from "@/constants";
 import { signOut, updateDocument } from "@/lib/appwrite";
 import useAuthStore from "@/store/auth.store";
+import { useGlobalStore } from "@/store/global.store";
 import { User } from "@/type";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
@@ -82,6 +84,7 @@ const profileItemList: ProfileItemListProps = [
 
 const Profile = () => {
   const { fetchAuthenticatedUser, user } = useAuthStore();
+  const { showModal, toggleModal } = useGlobalStore();
 
   const {
     control,
@@ -193,6 +196,7 @@ const Profile = () => {
           </View>
         )}
       />
+      <CustomModal />
     </SafeAreaView>
   );
 };

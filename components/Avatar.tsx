@@ -1,4 +1,5 @@
 import { images } from "@/constants";
+import { useGlobalStore } from "@/store/global.store";
 import React from "react";
 import {
   Image,
@@ -12,10 +13,11 @@ interface AvatarProps {
 }
 
 const Avatar = ({ imgUrl }: AvatarProps) => {
+  const { toggleModal } = useGlobalStore();
   return (
     <View className='mt-5 mb-12'>
       <Image source={imgUrl} className='profile-avatar' resizeMode='contain' />
-      <TouchableOpacity onPress={() => {}}>
+      <TouchableOpacity onPress={toggleModal}>
         <Image
           source={images.pencil}
           className='profile-edit'
